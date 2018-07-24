@@ -63,7 +63,7 @@ def check_word_length(word):
     Function to check if length of word is less than 4
     :return: bool
     """
-    return len(word) < 4
+    return len(word) <= 4
 
 
 def check_word_letters(word):
