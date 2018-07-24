@@ -17,9 +17,9 @@ GET /anagrams/<word>
 """
 
 from flask import Flask, jsonify, request, abort
-from telesign import helper
-from telesign.database import Database
 
+from database import Database
+import helper
 
 app = Flask(__name__)
 
