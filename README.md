@@ -87,6 +87,17 @@ To execute,
 ./abs_concurrent_requests.sh
 ```
 
+## Assumptions
+
+- The endpoints mentioned in the doc "SoftwareUserStory" and "README.md"
+were slightly different. For example, the SoftwareUserStory file had 
+"GET /counts/anagrams" whereas the README has "GET /anagrams/count". So, 
+for consistency of endpoints, I have opted to go with the endpoints listed
+in the README
+
+- User needs to setup a PostgreSQL Database and provide credentials and 
+other necessary paraeters in the .env file
+
 ## Design considerations 
 
 Framework: Flask
