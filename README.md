@@ -28,6 +28,12 @@ Alternatively,
 
 *Download telesign distribution*
 
+```
+wget -O FILE https://github.com/vishket/telesign/blob/v1/dist/telesign-0.1.1.tar.gz
+gunzip FILE
+tar -xzf FILE
+```
+
 ## Configure database
 
 Edit the .env file. Enter your PostgreSQL database connection settings
@@ -35,7 +41,7 @@ Edit the .env file. Enter your PostgreSQL database connection settings
 ## Run
 
 ```
-python telesign/app.py
+python telesign/telesign/app.py
 ```
 
 This should start the application on the default port 5000
