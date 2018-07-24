@@ -1,8 +1,8 @@
-"""
-A helper module to get anagram and palindrome of given strings
-"""
+#!/usr/bin/env python
 
-#TODO: need to init? Static?
+"""
+A helper module to get anagram, palindrome of given strings and check string format
+"""
 
 
 def check_if_palindrome(word):
