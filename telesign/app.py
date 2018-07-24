@@ -16,8 +16,6 @@ GET /anagrams/<word>
 
 """
 
-# TODO: Test against body of text
-
 from flask import Flask, jsonify, request, abort
 from telesign import helper
 from telesign.database import Database
@@ -52,14 +50,16 @@ def words():
     collection = []
 
     dbconn.select_all()
+
+    # Get a list of all existing words
     for record in dbconn.cursor:
         collection.append(record[0])
 
     if request.method == 'POST':
         raw_data = request.get_json()
-        print raw_data
         for word in set(raw_data):
             if word not in collection:
+                # Check if word length is less than or equal to 4 and all characters are ascii a-z
                 word_size_check = helper.check_word_length(word)
                 word_letter_check = helper.check_word_letters(word)
                 if word_size_check and word_letter_check:
@@ -91,12 +91,13 @@ def delete_word(word):
     """
     Function to delete provided word from collection
     :param word:
-    :return: updated_word_list: list
+    :return: json obj of collection
     """
     dbconn = Database()
 
     dbconn.delete_data(word)
-    return str(True)
+    dbconn.select_all()
+    return jsonify(dbconn.cursor.fetchall())
 
 
 @app.route('/v1/palindromes/count', methods=['GET'])
@@ -127,6 +128,7 @@ def get_anagrams(word):
     anagram_list = []
     collection = []
 
+    # Get all words in collection and store in a list
     dbconn.select_all()
     for record in dbconn.cursor:
         collection.append(record[0])
@@ -147,6 +149,7 @@ def get_total_anagrams():
     anagram_count = 0
     collection = []
 
+    # Get all words in collection and store in a list
     dbconn.select_all()
     for record in dbconn.cursor:
         collection.append(record[0])
